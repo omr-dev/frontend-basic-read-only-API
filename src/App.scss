@@ -1,0 +1,25 @@
+body {
+  background-color: #333;
+  color: #ccc;
+  font-size: 1.6rem;
+  padding: 20px;
+  .App{
+    h1{
+      text-align: center;
+    }
+    div.search-container{
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      margin: 0 auto;
+      input{
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 5px;
+        font-size: 2rem;
+      }
+    }
+  }
+}
