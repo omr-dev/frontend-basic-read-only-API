@@ -77,7 +77,6 @@ function App() {
           }
         }
       });
-
       setConstructeredData(_constructeredData);
     })();
   }, []);
