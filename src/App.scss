@@ -3,16 +3,17 @@ body {
   color: #ccc;
   font-size: 1.6rem;
   padding: 20px;
-  .App{
-    h1{
+  .App {
+    h1 {
       text-align: center;
     }
-    div.search-container{
+    div.search-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-content: center;
       width: 80%;
       margin: 0 auto;
-      input{
+      input {
         flex: 1;
         padding: 10px;
         border: 1px solid #ccc;
