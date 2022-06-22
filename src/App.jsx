@@ -87,7 +87,6 @@ function App() {
     } else {
       const _filteredData = constructeredData.filter((item) => {
         if (item.bulkSearch) {
-          console.log(typeof item.bulkSearch, query);
           return item.bulkSearch.toLowerCase().includes(query.toLowerCase());
         }
       });
@@ -97,7 +96,11 @@ function App() {
 
   const handleSearch = (newQuery) => {
     setQuery(newQuery);
-    filterData(newQuery);
+    if (newQuery.length < 3) {
+      setFilteredData([]);
+    } else {
+      filterData(newQuery);
+    }
   };
   return (
     <div className="App">
@@ -110,8 +113,11 @@ function App() {
           value={query}
         />
         <p>
-          Results: {filteredData.length} from {constructeredData.length}
+          {query.length < 3
+            ? "Type at least 3 characters"
+            : `Results: ${filteredData.length} from ${constructeredData.length}`}
         </p>
+
         <ol>
           {filteredData.map((item) => {
             switch (item.kind) {
