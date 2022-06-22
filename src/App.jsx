@@ -13,7 +13,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [constructeredData, setConstructeredData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const apiURL = "http://localhost:3007/all";
+  const apiURL = "https://basic-info-api.herokuapp.com/all";
   useEffect(() => {
     (async () => {
       const _allDataInAPI = (await axios.get(apiURL)).data;
@@ -106,45 +106,51 @@ function App() {
     <div className="App">
       <h1>Search in API Page</h1>
       <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search"
-          onChange={(e) => handleSearch(e.target.value)}
-          value={query}
-        />
-        <p>
-          {query.length < 3
-            ? "Type at least 3 characters"
-            : `Results: ${filteredData.length} from ${constructeredData.length}`}
-        </p>
+        {constructeredData.length > 0 ? (
+          <>
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={(e) => handleSearch(e.target.value)}
+              value={query}
+            />
+            <p>
+              {query.length < 3
+                ? "Type at least 3 characters"
+                : `Results: ${filteredData.length} from ${constructeredData.length}`}
+            </p>
 
-        <ol>
-          {filteredData.map((item) => {
-            switch (item.kind) {
-              case "noun": {
-                return <Noun item={item.item} />;
-              }
-              case "book": {
-                return <Book item={item.item} />;
-              }
-              case "techPerson": {
-                return <TechPerson item={item.item} />;
-              }
-              case "employee": {
-                return <Employee item={item.item} />;
-              }
-              case "translation": {
-                return <Translation item={item.item} />;
-              }
-              case "job": {
-                return <Job item={item.item} />;
-              }
-              default: {
-                return <p>Undefined data type!</p>;
-              }
-            }
-          })}
-        </ol>
+            <ol>
+              {filteredData.map((item) => {
+                switch (item.kind) {
+                  case "noun": {
+                    return <Noun item={item.item} />;
+                  }
+                  case "book": {
+                    return <Book item={item.item} />;
+                  }
+                  case "techPerson": {
+                    return <TechPerson item={item.item} />;
+                  }
+                  case "employee": {
+                    return <Employee item={item.item} />;
+                  }
+                  case "translation": {
+                    return <Translation item={item.item} />;
+                  }
+                  case "job": {
+                    return <Job item={item.item} />;
+                  }
+                  default: {
+                    return <p>Undefined data type!</p>;
+                  }
+                }
+              })}
+            </ol>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </div>
   );
